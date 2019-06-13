@@ -1,0 +1,44 @@
+<br><br><br><br><br><br>
+<div class="well col-xs-8 col-xs-offset-2">
+<h3 align="right">Hello <%=link_to @user.name, user_path if logged_in? %>!!</h3>
+<h2 align="center">Edit Your Profile</h2>
+<br>
+<div class="row">
+ <div class="col-xs-8">
+  <%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |f| %>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :name %>
+   </div>
+   <div class="col-sm-8">
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter username", autofocus: true %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :email %>
+   </div>
+   <div class="col-sm-8">
+    <%= f.email_field :email, class: "form-control", placeholder: "Enter email" %>
+   </div>
+  </div>
+  <div class="form-group">
+   <div class="control-label col-sm-2">
+    <%= f.label :password %>
+   </div>
+   <div class="col-sm-8">
+    <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+   </div>
+  </div>  
+  <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-10">
+    <%= f.submit "Update", class: 'btn btn-primary btn-large' %>
+    <%= link_to 'Back', user_path(@user) , class: 'btn btn-primary btn-large'%>
+  <%= link_to "Delete My Account", user_path(@user), method: :delete, data: { confirm: "Are you sure you want to delete your Account?"},class: 'btn btn-primary btn-large'  %>
+   </div>
+  </div>
+  <% end %>
+   
+ </div>
+</div>
+</div>

@@ -1,0 +1,36 @@
+<br><br><br><br><br>
+<h2 align="center">Title: <%= @article.title %></h2>
+<div class="well col-xs-8 col-xs-offset-2">
+ <h4 class="center"><strong>Description:</strong></h4>
+ <hr>
+ <p><%= @article.description.html_safe %></p>
+
+
+<%= link_to "Edit", edit_article_path(@article) ,class: 'btn btn-primary btn-large' if logged_in? &&  @article.user == current_user%> 
+
+
+
+<%= link_to 'Back', articles_path ,class: 'btn btn-primary btn-large'%> 
+<br><br>
+<p><b><%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%></b></p>
+<% pre_like = @article.likes.find { |like| like.user_id == current_user.id} if logged_in? %>
+<% if pre_like %>
+  <%= link_to 'Unlike', article_like_path(@article, pre_like), method: :delete,class: 'btn btn-primary btn-large' %>
+<% else %>
+  <%= link_to 'Like',article_likes_path(@article), method: :post ,class: 'btn btn-primary btn-large'%>
+<% end %>
+
+
+<br><br>
+
+
+<h3>Comments</h3>
+
+    <%= form_for [@article, Comment.new] do |f| %>
+    <%= f.text_area :body, placeholder: "Add a comment" %><br/>
+    <%= f.submit "Add Comment" ,class: 'btn btn-primary btn-large'%>
+  <% end %>
+
+  <ul>
+    <%= render @article.comments %>
+  </ul>

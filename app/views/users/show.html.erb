@@ -1,0 +1,17 @@
+
+<br><br><br><br><br><br>
+
+<div class="well col-xs-8 col-xs-offset-2">
+<h1 align="center">Welcome to <%= @user.name %>'s blog page</h1>
+
+<% @user.articles.each do |article| %>
+	<h3>Title: <%= article.title %></h2>
+	<h3>Description:</h3><p> <%= article.description.html_safe %></p>
+	<%= link_to "Edit", edit_article_path ,class: 'btn btn-primary btn-large'  if logged_in? && article.user == current_user %>
+	<%= link_to 'Delete', article_path, method: :delete, 
+data: {confirm: "Are you sure?"} ,class: 'btn btn-primary btn-large' if logged_in? && article.user == current_user %> 
+	
+<% end %>
+<br><br>
+<%= link_to "Back", users_path(@user) ,class: 'btn btn-primary btn-large'  %>
+</div>

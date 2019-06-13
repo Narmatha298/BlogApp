@@ -1,0 +1,23 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <br><br>
+  <div class="container">
+    <%= link_to "MY BLOG", '#' if !logged_in? %>
+    <% if logged_in? %>
+    <p class="navbar-text"><b> Hello <%= link_to current_user.name, user_path(current_user) %>!!</b></p>
+    <% end %>
+    
+      <ul class="nav navbar-nav navbar-right">
+        <% if logged_in? %>
+          <% if @user == current_user %>
+          <%= link_to "Edit Profile", edit_user_path ,class: 'btn btn-primary btn-large' %>
+          <% end %>
+          <%= link_to "Create New Article", new_article_path, class: 'btn btn-primary btn-large'  %>
+	       <%= link_to "Log out", logout_path, method: :delete,class: 'btn btn-primary btn-large' %>
+         
+	     <% else %>	
+          <p class="navbar-text">Login To Create New Article </p><%= link_to "Login", login_path,class: 'btn btn-primary btn-large' %>
+	<% end %>
+      </ul>
+   
+  </div>
+</header>
