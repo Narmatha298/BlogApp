@@ -42,7 +42,7 @@ gem 'mini_magick', '~> 4.3'
 #gem "paperclip"
 
 gem "ckeditor", '4.3'
-gem 'omniauth-google-oauth2'
+#gem 'omniauth-google-oauth2'
 
 gem 'tinymce-rails'
 
